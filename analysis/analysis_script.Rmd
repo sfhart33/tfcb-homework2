@@ -1,0 +1,38 @@
+---
+title: "Analysis Script"
+output: github_document
+---
+
+```{r}
+library(tidyverse)
+```
+
+```{r}
+data <- read_tsv("../data/example_dataset_2.tsv") %>%
+  mutate(mean_ratio = mean_yfp / mean_rfp) %>%
+  mutate(mean_ratio = round(mean_ratio, 2)) %>%
+  print()
+```
+
+```{r}
+annotations <- read_tsv("../data/example_dataset_3.tsv") %>%
+  print()
+```
+
+```{r}
+data %>%
+  inner_join(annotations, by = "strain") %>%
+  print()
+```
+
+
+```{r}
+data %>%
+  summarize(max_yfp = max(mean_yfp),
+            max_rfp = max(mean_rfp)) %>%
+  print()
+```
+
+and so on...
+
+I am not sure whether I was actually supposed to do this but I have just been copying in commands from Rasi's slides. I am going to stop now because it just seems like busy work at this point and I am not sure whether this is what the problem was asking for
